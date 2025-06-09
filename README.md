@@ -110,15 +110,8 @@ Models are evaluated using:
 
 ## 📚 References
 
-* [DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks (Amazon)](https://arxiv.org/abs/1704.04110)
-* [Attention is All You Need](https://arxiv.org/abs/1706.03762)
-* [Hands-On Time Series Analysis with Python](https://www.oreilly.com/library/view/hands-on-time-series/9781788624561/)
-
----
-
-## 🧑‍💻 Maintainer
-
-Created and maintained by [Your Name](https://github.com/yourusername). Feel free to reach out via Issues or Discussions for questions or suggestions!
+* [Dive into Deep Learning book](https://d2l.ai/)
+* [Time-series Forecasting using Deep Learning](https://github.com/bpbpublications/Time-Series-Forecasting-using-Deep-Learning)
 
 ---
 
