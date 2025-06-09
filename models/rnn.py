@@ -20,4 +20,8 @@ class RNN(nn.Module):
         return out, last_hidden_states
     
 rnn_model = RNN(hidden_size = 32)
-print(rnn_model.state_dict())
+print(rnn_model)
+
+from torchinfo import summary
+print('Check Torch Info')
+print(summary(rnn_model, input_size = (187,10,1) ))

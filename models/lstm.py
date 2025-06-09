@@ -13,3 +13,10 @@ class LSTM(nn.Module):
         last_hidden_states = out[:, -1, :]
         out = self.fc(last_hidden_states)
         return out
+    
+lstm_model = LSTM(hidden_size = 32)
+print(lstm_model)
+
+from torchinfo import summary
+print('Check Torch Info')
+print(summary(lstm_model, input_size = (187,10,1) ))
