@@ -1,9 +1,8 @@
 # ⏳ Time Series Forecasting with Classical and Deep Learning Models
 
-Welcome to the **Time Series Forecasting** repository! This project explores a wide range of forecasting techniques, from classical statistical models to cutting-edge deep learning architectures. It aims to provide a unified, modular framework to experiment, compare, and evaluate multiple forecasting methods on time series data.
+This project **Time Series Forecasting** explores a wide range of forecasting techniques, from classical statistical models to cutting-edge deep learning architectures. It aims to provide a unified, modular framework to experiment, compare, and evaluate multiple forecasting methods on time series data.
 
 ---
-
 ## 📈 Project Overview
 
 Time series forecasting is essential in many domains such as finance, energy, retail, and climate science. This repository includes:
@@ -90,10 +89,9 @@ jupyter notebook notebooks/
 
 ## 📊 Sample Dataset
 
-We provide toy and real-world datasets such as:
+In this project, I use real-world datasets such as:
 
-* 
-* Source
+* Source: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce?select=olist_orders_dataset.csv)
 
 ---
 
