@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 
-class BRNN(nn.Module):
+class BLSTM(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, num_classes):
-        super(BRNN, self).__init__()
+        super(BLSTM, self).__init__()
         self.hidden_size = hidden_size
         self.num_layers = num_layers
         self.lstm = nn.LSTM(
@@ -19,3 +19,10 @@ class BRNN(nn.Module):
         out = self.fc(out[:, -1, :])
 
         return out
+    
+blstm_model = BLSTM(input_size = 1, hidden_size = 32, num_layers = 20, num_classes=20)
+print(blstm_model.state_dict())
+
+from torchinfo import summary
+print('Check Torch Info')
+print(summary(blstm_model, input_size = (187,10,1) ))

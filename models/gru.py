@@ -13,3 +13,7 @@ class GRU(nn.Module):
     
 gru_model = GRU(hidden_size = 32)
 print(gru_model.state_dict())
+
+from torchinfo import summary
+print('Check Torch Info')
+print(summary(gru_model, input_size = (187,10,1) ))
