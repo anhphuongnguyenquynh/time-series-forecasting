@@ -9,6 +9,8 @@ import pandas as pd
 import torch
 from sklearn.preprocessing import MinMaxScaler 
 from models.rnn import RNN
+from models.gru import GRU 
+from models.lstm import LSTM 
 
 #Load dataset
 olist_orders = pd.read_csv("data/olist_dataset/olist_orders_dataset.csv")
@@ -35,6 +37,10 @@ orders_bydate = orders_bydate.sort_values('date', ascending = False)
 # Remove outliers
 orders_bydate_filtered = orders_bydate.loc[orders_bydate['no_orders'] < 400]
 
+#Plot
+#orders_bydate_filtered.plot()
+#plt.show()
+
 #Prepare dataset for training
 data_rnn = orders_bydate_filtered.copy()
 data_rnn.sort_values('date', inplace = True)
@@ -42,7 +48,6 @@ data_rnn.sort_values('date', inplace = True)
 scaler = MinMaxScaler()
 #df_scaled = scaler.fit_transform(orders_bydate_rnn)
 data_rnn['scaled_orders'] = scaler.fit_transform(data_rnn[['no_orders']])
-
 
 def create_sequences(data, window_size):
     sequences = []
@@ -57,12 +62,14 @@ def create_sequences(data, window_size):
 window_size = 10
 data = data_rnn['scaled_orders'].values
 X, y = create_sequences(data, window_size)
-print(X.shape)
-print(y.shape)
+print('X.shape', X.shape)
+print('y.shape', y.shape)
 
 # Reshape X to (samples, seq_len, 1) for RNN input
 X = X.reshape(X.shape[0], X.shape[1], 1)
 y = y.reshape(-1, 1)
+print('X.shape after reshape', X.shape)
+print('y.shape after reshape', y.shape)
 
 #Create a custom dataset for class for Pytorch DataLoader
 
@@ -88,6 +95,13 @@ class RNNDataset(Dataset):
 #Deep Learning Model
 rnn_model = RNN(hidden_size = 32)
 
+#Test make predictions with model
+X_test_tensor = torch.tensor(X, dtype = torch.float32)
+with torch.inference_mode(): 
+    y_preds = rnn_model(X_test_tensor)
+
+print('y_preds test prediction', y_preds)
+
 #Hyperparameters
 hidden_size = 32
 learning_rate = 0.02
@@ -106,7 +120,6 @@ criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 #Training
-##Training loop
 num_epochs = 100
 for epoch in range(num_epochs):
     ###TRAINING
@@ -173,3 +186,5 @@ plt.legend()
 plt.title("RNN Time Series Forecast")
 plt.show()
 
+plt.savefig("images/Time Series Forecast.png")
+plt.close()
